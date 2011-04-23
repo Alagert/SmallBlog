@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+    </bean>
+
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles-def.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+        <property name="defaultLocale">
+            <value>en</value>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>blog-resources</value>
+        </property>
+    </bean>
+
+    <dwr:configuration/>
+
+    <!--<bean id="dwrController" class="org.springframework.web.servlet.mvc.ServletWrappingController">-->
+        <!--<property name="servletClass">-->
+            <!--<value>uk.ltd.getahead.dwr.DWRServlet</value>-->
+        <!--</property>-->
+        <!--<property name="initParameters">-->
+            <!--<props>-->
+                <!--<prop key="debug">true</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/home.htm">HomeController</prop>
+                <prop key="/showUser.htm">UserInfoController</prop>
+                <prop key="/showComments.htm">ShowCommentsController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="HomeController" class="ru.infos.dcn.www.HomeController">
+        <property name="blogService" ref="blogService"/>
+    </bean>
+
+    <bean id="UserInfoController" class="ru.infos.dcn.www.ShowUserInfoController">
+        <property name="blogService" ref="blogService"/>
+    </bean>
+
+    <bean id="ShowCommentsController" class="ru.infos.dcn.www.ShowCommentsController">
+        <property name="blogService" ref="blogService"/>
+    </bean>
+
+    <bean id="exceptionResolver" class="ru.infos.dcn.www.BlogExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">error.htm</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

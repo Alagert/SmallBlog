@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ru.infos.dcn.server.dao.entity.Comment" table="BLOG_COMMENT" lazy="false">
+        <id name="commentId" type="java.lang.Long" >
+            <column name="COMMENT_ID" not-null="true"/>
+            <generator class="increment" />
+        </id>
+
+        <property name="comment" column="COMMENT_TEXT" type="string" not-null="true"/>
+        <property name="timestamp" column="COMMENT_TIMESTAMP" type="timestamp"/>
+        <property name="authorId" column="AUTHOR_ID" type="java.lang.Long" not-null="true"/>
+    </class>
+</hibernate-mapping>

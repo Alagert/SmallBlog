@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE dwr PUBLIC
+        "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+        "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr>
+    <allow>
+        <create creator="spring" javascript="blogService">
+            <param name="beanName" value="blogService"/>
+        </create>
+
+        <convert converter="bean" match="com.dcn.common.dto.PostDTO">
+            <param name="include" value="postId, subject,text,timestamp,comments"/>
+        </convert>
+
+        <create creator="spring" javascript="userRegistrationService">
+            <param name="beanName" value="userRegistrationService"/>
+        </create>
+
+        <create creator="spring" javascript="userAuthorizationService">
+            <param name="beanName" value="userAuthorizationService"/>
+        </create>
+
+
+        <convert converter="bean" match="com.dcn.common.dto.UserDTO">
+            <param name="include" value="name,nickName,password,posts"/>
+        </convert>
+
+
+        <convert converter="bean" match="com.dcn.common.dto.CommentDTO">
+            <param name="include" value="comment,authorId,timestamp"/>
+        </convert>
+
+    </allow>
+</dwr>

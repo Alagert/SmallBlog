@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ru.infos.dcn.server.dao.entity.User" table="BLOG_USER" lazy="false">
+        <id name="userId" type="java.lang.Long" >
+            <column name="USER_ID" not-null="true"/>
+            <generator class="increment" />
+        </id>
+
+        <version name="version" column="VERSION"/>
+
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="nickName" column="NICK_NAME" type="string" not-null="true" unique="true"/>
+        <property name="password" column="PASSWORD" type="string" not-null="true"/>
+
+        <set name="posts" table="POST" cascade="all" lazy="false">
+            <key column="USER_ID" />
+            <one-to-many class="ru.infos.dcn.server.dao.entity.Post"/>
+        </set>
+    </class>
+</hibernate-mapping>

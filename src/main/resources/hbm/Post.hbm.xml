@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ru.infos.dcn.server.dao.entity.Post" table="BLOG_POST" lazy="false">
+        <id name="postId" type="java.lang.Long" >
+            <column name="POST_ID" not-null="true"/>
+            <generator class="increment" />
+        </id>
+
+        <version name="version" column="VERSION"/>
+
+        <property name="subject" column="SUBJECT" type="string"/>
+        <property name="text" column="TEXT" type="string"/>
+        <property name="timestamp" column="POST_TIMESTAMP" type="timestamp"/>
+
+        <set name="comments" table="POST" cascade="all" lazy="false">
+            <key column="POST_ID" />
+            <one-to-many class="ru.infos.dcn.server.dao.entity.Comment"/>
+        </set>
+
+    </class>
+</hibernate-mapping>
