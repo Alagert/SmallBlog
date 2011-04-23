@@ -27,7 +27,6 @@ public class BlogServiceImpl implements BlogService {
     private UserDao userDao;
     private PostDao postDao;
 
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -53,7 +52,7 @@ public class BlogServiceImpl implements BlogService {
     public void post(Long userId, PostDTO post) throws UserNotFoundException {
         final User user = userDao.getUserById(userId);
         if (user == null) {
-            throw new UserNotFoundException("User not found!");
+            throw new UserNotFoundException("User with ID=" + userId + " not found ");
         } else {
             user.getPosts().add(utilityService.dtoToPost(post));
             userDao.updateUser(user);
@@ -82,7 +81,7 @@ public class BlogServiceImpl implements BlogService {
     public void comment(Long postId, CommentDTO comment) throws PostNotFoundException {
         final Post post = postDao.getPostById(postId);
         if (post == null) {
-            throw new PostNotFoundException("Post not found!");
+            throw new PostNotFoundException("Post with ID=" + postId + " not found!");
         } else {
             post.getComments().add(utilityService.dtoToComment(comment));
             postDao.updatePost(post);
