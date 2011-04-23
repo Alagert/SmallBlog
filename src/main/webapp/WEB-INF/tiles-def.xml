@@ -14,6 +14,10 @@
         <put-attribute name="body" value="contentRoot/pages/www/error.jsp"/>
     </definition>
 
+    <definition name="login.htm" extends="main.layout.htm">
+        <put-attribute name="body" value="contentRoot/pages/www/login.htm"/>
+    </definition>
+
     <definition name="home.htm" extends="main.layout.htm">
         <put-attribute name="body" value="contentRoot/pages/www/home.jsp"/>
     </definition>
