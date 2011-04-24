@@ -17,6 +17,13 @@ public class LoginController {
     @Autowired
     private UserAuthenticationService userAuthenticationService;
 
+    /**
+     * Performers login.do
+     *
+     * @param login    login
+     * @param password password
+     * @return redirects to home.htm in success case, instead to error.htm
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView doLogin(
             @RequestParam
@@ -24,7 +31,11 @@ public class LoginController {
             @RequestParam
             String password
     ) {
-        return new ModelAndView("error.htm");
+        if (userAuthenticationService.authenticateUser(login, password)) {
+            return new ModelAndView("redirect:home.htm");
+        } else {
+            return new ModelAndView("error.htm");
+        }
     }
 
 }
