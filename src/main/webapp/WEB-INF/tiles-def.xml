@@ -15,7 +15,7 @@
     </definition>
 
     <definition name="login.htm" extends="main.layout.htm">
-        <put-attribute name="body" value="contentRoot/pages/www/login.htm"/>
+        <put-attribute name="body" value="contentRoot/pages/www/login.jsp"/>
     </definition>
 
     <definition name="home.htm" extends="main.layout.htm">
