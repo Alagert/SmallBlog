@@ -6,8 +6,7 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        
-<!--        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>-->
+        <!--<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>-->
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
@@ -15,5 +14,8 @@
         <mapping resource="hbm/User.hbm.xml"/>
         <mapping resource="hbm/Comment.hbm.xml"/>
         <mapping resource="hbm/Post.hbm.xml"/>
+
+        <!-- Database connection settings -->
+
     </session-factory>
 </hibernate-configuration>

@@ -214,8 +214,6 @@
     <properties>
         <version.spring>3.0.5.RELEASE</version.spring>
         <version.aspectj>1.6.8</version.aspectj>
-        <version.commons-dbcp>1.4</version.commons-dbcp>
-        <version.commons-lang>2.5</version.commons-lang>
     </properties>
 
     <build>
@@ -245,7 +243,7 @@
                     <componentProperties>
                         <outputfilename>schema.sql</outputfilename>
                         <jdk5>true</jdk5>
-                        <create>false</create>
+                        <export>false</export>
                     </componentProperties>
                 </configuration>
             </plugin>
