@@ -28,19 +28,6 @@
 
     <tx:annotation-driven transaction-manager="txManager"/>
 
-    <!--<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">-->
-        <!--<property name="transactionManagerName" value="java:/TransactionManager"/>-->
-    <!--</bean>-->
-    <!--<bean id="jbossTransactionManager"-->
-    <!--class="com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple">-->
-    <!--</bean>-->
-
-    <!--<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">-->
-    <!--<property name="transactionManager" ref="jbossTransactionManager"/>-->
-    <!--<property name="allowCustomIsolationLevels" value="true"/>-->
-    <!--</bean>-->
-
-
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>

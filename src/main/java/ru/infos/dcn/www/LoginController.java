@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import ru.infos.dcn.server.service.UserAuthenticationService;
 
 /**
@@ -18,24 +19,33 @@ public class LoginController {
     private UserAuthenticationService userAuthenticationService;
 
     /**
-     * Performers login.do
+     * Creates login.htm
      *
-     * @param login    login
-     * @param password password
-     * @return redirects to home.htm in success case, instead to error.htm
+     * @return login.htm
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView doLogin(
-            @RequestParam
-            String login,
-            @RequestParam
-            String password
-    ) {
+    public ModelAndView doLogin() {
+        return new ModelAndView("login.htm");
+    }
+
+    /**
+     * Performers login.htm
+     *
+     * @param login login
+     * @param password password
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView processLogin(@RequestParam
+                                     String login,
+                                     @RequestParam
+                                     String password) {
         if (userAuthenticationService.authenticateUser(login, password)) {
             return new ModelAndView("redirect:home.htm");
         } else {
             return new ModelAndView("error.htm");
         }
+
     }
 
 }

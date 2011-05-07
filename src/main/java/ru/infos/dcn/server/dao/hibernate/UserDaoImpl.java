@@ -33,12 +33,12 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
     public Boolean authorizeUser(String nickName, String password) {
         final Session session = getSessionFactory().getCurrentSession();
-        final Integer exists = (Integer) session.createCriteria(User.class).
+        final Long exists = (Long) session.createCriteria(User.class).
                 add(Restrictions.eq("nickName", nickName)).
                 add(Restrictions.eq("password", password)).
                 setProjection(Projections.rowCount()).
                 uniqueResult();
-        return exists > 0;
+        return exists > 0l;
     }
 
 
